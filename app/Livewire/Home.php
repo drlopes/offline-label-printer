@@ -319,8 +319,8 @@ class Home extends Component
             if (! $selectedPrinter) {
                 $defaultPrinter = null;
                 foreach ($systemPrinters as $printer) {
-                    if ($printer['default']) {
-                        $defaultPrinter = $printer['name'];
+                    if ($printer->isDefault) {
+                        $defaultPrinter = $printer->displayName;
                         break;
                     }
                 }
