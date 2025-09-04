@@ -12,7 +12,7 @@
 <body class="select-none">
     <x-main full-width>
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-zinc-100 dark:bg-base-300" collapse-text="Colapsar">
-            
+
             <div class="ml-5 py-5 flex gap-x-1 h-6">
                 <span>
                     <img src="{{ Vite::asset('resources/images/icon.png') }}" alt="Logo" class="h-5 min-w-7 pl-1">
@@ -21,16 +21,16 @@
                     Contingência (v{{ env('NATIVEPHP_APP_VERSION', 'Laravel') }})
                 </span>
             </div>
-            
+
             <x-menu activate-by-route>
                 <x-menu-item title="Gerar Etiquetas" icon="o-printer" link="/" />
-                
+
                 <x-menu-sub title="Configurações" icon="o-cog-6-tooth">
                     <x-menu-item title="Impressoras" icon="o-printer" link="/printers" />
                 </x-menu-sub>
             </x-menu>
         </x-slot:sidebar>
-        
+
         <x-slot:content>
             <div class="fixed top-1 right-1 flex items-center gap-x-2 z-50">
                 <x-theme-toggle class="btn btn-sm btn-circle btn-ghost" />
