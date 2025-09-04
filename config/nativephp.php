@@ -159,7 +159,7 @@ return [
     ],
 
     'postbuild' => [
-        // 'rm -rf public/build',
+        'rm -rf public/build',
     ],
 
     /**
