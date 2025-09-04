@@ -221,8 +221,6 @@ class Home extends Component
         $padded_paletNumber = str_pad($paletNumber, 7, '0', STR_PAD_LEFT);
         $paletWeight = $this->paletWeight / 100;
         $padded_paletWeight = str_pad($paletWeight, 4, '0', STR_PAD_LEFT);
-        $boxWeight = $this->boxWeight / 100;
-        $padded_boxWeight = str_pad($boxWeight, 4, '0', STR_PAD_LEFT);
         $productionLine = $this->productionLine;
         $totalLabels = count($this->generatedLabels);
 
@@ -289,7 +287,7 @@ class Home extends Component
             $padded_paletWeight,
             $sapbatch,
             strtoupper($vendorbatch),
-            Carbon::parse($this->shelfLife)->format('d/m/Y'),
+            Carbon::parse($shelfLife)->format('d/m/Y'),
             $requestNumber,
             $paletNumber,
         ], $zplTemplate);
