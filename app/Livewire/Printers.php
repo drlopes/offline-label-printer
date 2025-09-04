@@ -11,12 +11,15 @@ class Printers extends Component
 {
     use Toast;
 
-    public array $printers;
-    public string $selectedPrinter;
+    public array $printers = [];
+    public ?string $selectedPrinter = null;
 
     public function mount()
     {
-        $this->selectedPrinter = Settings::get('selected_printer', null);
+        $selectedPrinter = Settings::get('selected_printer', null);
+        if ($selectedPrinter) {
+            $this->selectedPrinter = $selectedPrinter;
+        }
     }
 
     public function render()
