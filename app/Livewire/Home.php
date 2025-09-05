@@ -166,6 +166,9 @@ class Home extends Component
 
         $this->productionLine = '';
         Settings::set('productionLine', null);
+
+        $this->generatedLabels = [];
+        $this->selectedLabels = [];
     }
 
     public function updated($name, $value)
