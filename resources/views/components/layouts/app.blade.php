@@ -18,7 +18,7 @@
                     <img src="{{ Vite::asset('resources/images/icon.png') }}" alt="Logo" class="h-5 min-w-7 pl-1">
                 </span>
                 <span x-cloak x-show="!collapsed" class="overflow-hidden font-bold w-full h-6">
-                    Contingência
+                    Contingência (v{{ config('app.version') }})
                 </span>
             </div>
 
