@@ -159,7 +159,8 @@ return [
     ],
 
     'postbuild' => [
-        // 'rm -rf public/build',
+        'rm -rf public/build',
+        'php artisan optimize:clear',
     ],
 
     /**
