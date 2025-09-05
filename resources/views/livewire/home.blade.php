@@ -140,7 +140,7 @@
                                         </div>
                                         <div class="flex flex-col items-center justify-center">
                                             <span class="text-[16px] font-bold">NUMPAL</span>
-                                            <span>{!! DNS1D::getBarcodeSVG($paletNumber, 'C128', 3, 40) !!}</span>
+                                            <span>{!! DNS1D::getBarcodeSVG($paletNumber, 'C128', 2, 40) !!}</span>
                                         </div>
                                     </div>
                                     <div class="w-[200px] flex items-center justify-center">
