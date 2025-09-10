@@ -174,7 +174,7 @@ class Home extends Component
     public function updated($name, $value)
     {
         if ($name !== 'selectedLabels') {
-            Settings::set($name, $value);
+            Settings::set($name, trim($value));
 
             if ($this->codpro != null
                 && $this->ds1pro != null
@@ -213,18 +213,19 @@ class Home extends Component
         $labelsToPrint = $labels ?? array_keys($this->generatedLabels);
         $this->js("console.log(".json_encode($labelsToPrint).");");
 
-        $codpro = $this->codpro;
+        $codpro = (int) trim($this->codpro);
         $padded_codpro = str_pad($codpro, 17, '0', STR_PAD_LEFT);
-        $ds1pro = $this->ds1pro;
-        $sapbatch = $this->sapbatch;
-        $vendorbatch = $this->vendorbatch;
+        $qrcode_padded_codpro = str_pad($codpro, 13, '0', STR_PAD_LEFT);
+        $ds1pro = trim($this->ds1pro);
+        $sapbatch = trim($this->sapbatch);
+        $vendorbatch = trim($this->vendorbatch);
         $shelfLife = $this->shelfLife;
-        $requestNumber = $this->requestNumber;
-        $paletNumber = $this->paletNumber;
+        $requestNumber = (int) trim($this->requestNumber);
+        $paletNumber = (int) trim($this->paletNumber);
         $padded_paletNumber = str_pad($paletNumber, 7, '0', STR_PAD_LEFT);
-        $paletWeight = $this->paletWeight / 100;
+        $paletWeight = (int) trim($this->paletWeight) / 100;
         $padded_paletWeight = str_pad($paletWeight, 4, '0', STR_PAD_LEFT);
-        $productionLine = $this->productionLine;
+        $productionLine = trim($this->productionLine);
         $totalLabels = count($this->generatedLabels);
 
         $zplTemplate = "^XA
@@ -261,7 +262,7 @@ class Home extends Component
         ^FO65,277^BY3^B3,,72^FD:cpe_id^FS
 
         ^A0N,27,27^FO225,415^FD NUMPAL ^FS
-        ^FO90,445^BY3^B3,,100^FD:numpal^FS
+        ^FO23,445^BY3^B3,,100^FD:numpal^FS
 
         ^FO0,395^GB 565,2,2^FS
         ^FO565,229^GB2,360,2^FS
@@ -292,7 +293,7 @@ class Home extends Component
             strtoupper($vendorbatch),
             Carbon::parse($shelfLife)->format('d/m/Y'),
             $requestNumber,
-            $paletNumber,
+            str_pad($paletNumber, 9, '0', STR_PAD_LEFT),
         ], $zplTemplate);
 
         $labels = '';
@@ -300,7 +301,7 @@ class Home extends Component
             $labelWeight = $this->generatedLabels[$label];
             $padded_labelWeight = str_pad($labelWeight, 4, '0', STR_PAD_LEFT);
             $labelNumber = $label + 1;
-            $qrcodeContent = ']Q3(91)'.$padded_codpro.'(10)'.$padded_paletNumber.'-'.str_pad($labelNumber, 2, '0', STR_PAD_LEFT).'(15)'.Carbon::parse($this->shelfLife)->format('ymd').'(37)'.$padded_labelWeight;
+            $qrcodeContent = ']Q3(91)'.$qrcode_padded_codpro.'(10)'.$padded_paletNumber.'-'.$labelNumber.'(15)'.Carbon::parse($this->shelfLife)->format('ymd').'(37)'.$padded_labelWeight;
 
             $label = str_replace([
                 ':etiqueta_atual',
