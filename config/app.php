@@ -4,6 +4,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Version
+    |--------------------------------------------------------------------------
+    | This value is the version of your application. This can be used to display
+    | the application version in the UI or for other purposes.
+    | You can set this value in your ".env" file.
+    |---------------------------------------------------------------------------
+    */
+    'version' => env('APP_VERSION', null),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |
